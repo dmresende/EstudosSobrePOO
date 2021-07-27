@@ -3,8 +3,8 @@ public class Programa {
 	
 	public static void main(String[] args) {
 		
-		Conta contaDouglas = new Conta("Douglas Resende");
-		Conta contaDiego = new Conta("Diego Maia");
+		Conta contaDouglas = new Conta("Douglas Resende", 0, -1);
+		Conta contaDiego = new Conta("Diego Maia", 0, -6);
 		
 		
 			

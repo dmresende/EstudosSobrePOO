@@ -1,26 +1,25 @@
 
 public class Conta {
 
-	//ATRIBUTOS
+	// ATRIBUTOS
 	private String cliente;
-	private int agencia;
+	protected int agencia; 
 	private int numeroConta;
 	private double saldo;
 
-	//CONSTRUTOR
-	public Conta(String cliente) { // o que está dentro do parênteses são os argumentos 
+	// CONSTRUTOR(ARGUMENTOS)
+	public Conta(String cliente, int agencia, int numeroConta) {
 		this.setCliente(cliente);
-		this.setAgencia();
-		this.setNumeroConta();
+		this.setAgencia(agencia);
+		this.setNumeroConta(numeroConta);
 
 	}
-	
 
-	//METODOS
-	public String getCliente() {
-		return cliente;
-	}
-
+	// METODOS                                               //O get. SERVE PARA PEGAR A INFORMAÇÃO E RETORNAR
+	public String getCliente() {                             //O set. SERVE PARA DEFINIR O ARGUMENTO INFORMANDO QUE O ATRIBULTO RECEBERAR O QUE O VALOR QUE O ARGUMENTO RECEBER
+		return cliente;                                      //O return É OBRIGAÓRIO PARA O GET OU PARA UM MÉTODO QUE NÃO SEJA UM VOID
+	}                                                        //O this.elemento SERVE PARA APONTAR QUAL É ESSE ELEMENTO
+                                                             // 
 	public void setCliente(String cliente) {
 		this.cliente = cliente;
 
@@ -30,19 +29,25 @@ public class Conta {
 		return agencia;
 	}
 
-	
-	//26/07/2021
-	public void setAgencia() {
-			this.agencia = (int) Math.round(Math.random()*900);
-	}			
+	public void setAgencia(int agencia) {
+		if (agencia <= 0) {
+			this.agencia = (int) Math.round(Math.random() * 999); //FUNÇAO PARA ARREDONDAR E GERAR NÚMERO ALEATÓRIO NO CASO DA CONDIÇÃO SER ACIONADA
+		} else {
+			this.agencia = agencia;                               //this.agencia = agencia INFORMA QUE O ATRIBUTO AGENCIA VAI RECEBER O VALOR QUE O ARGUMENTO agencia RECEBER
+		}
+	}
 
 	public int getNumeroConta() {
 		return numeroConta;
 
 	}
 
-	public void setNumeroConta() {
-			this.numeroConta = (int) Math.round(Math.random()*999);
+	public void setNumeroConta(int numeroConta) {
+		if (numeroConta <= 0) {
+			this.numeroConta = (int) Math.round(Math.random() * 999); //FUNÇAO PARA ARREDONDAR E GERAR NÚMERO ALEATÓRIO NO CASO DA CONDIÇÃO SER ACIONADA
+		} else {
+			this.numeroConta = numeroConta;
+		}
 	}
 
 	public double getSaldo() {
@@ -78,6 +83,5 @@ public class Conta {
 		}
 
 	}
-	
 
 }

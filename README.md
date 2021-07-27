@@ -10,7 +10,7 @@ Reuni-se aqui uma série de conceitos, arquivo, documentos e exemplos adquiridos
  * Criação das Classes _Herdeiras_ com seus atributos pertinentes, cada qual com sua peculiaridade. **aplicação do conceito de encapsulamento**
  * Crianção da Classe _Diretor_ onde está sendo **aplicado o conceito do Polimorfismo**
  
-
+---
 
 ## Pilares
 
@@ -28,9 +28,30 @@ Reuni-se aqui uma série de conceitos, arquivo, documentos e exemplos adquiridos
 
 # Classes
 
-* Conta;
-* Programa;
-* Funcionario;
+### Conta
+* Classe com atributos relacionados a uma conta geral de banco.
+*  Possui um _Construtor_ que exige que seja informado alguns _dados_ obrigatórios para a **Regra de Negócio**.
+*  Seus métodos são relacionados aos seus atributos, os demais correlaciona os existentes como por exemplo temos o método para _saque_ e para _deposito_, cada uma com sua finalidade podemos correlaciona-las:
+
+	~~~ 
+	public void transfere(double valor, Conta destino) {
+
+		if (valor > this.getSaldo()) {
+			System.out.println("Saldo insufisiente");
+		} else {
+			this.saque(valor);
+			destino.deposita(valor);
+		}
+	}
+---
+### Programa
+* Classe onde roda o nosso programa, onde nossas outras classes são testadas. Aqui temos o método _main_ e é onde a mágica acontece. 
+---
+### Funcionário
+
+
+
+---
 * TesteFuncionario;
 * Bonificação;
 * Programador;
