@@ -1,118 +1,83 @@
 
 public class Conta {
 
+	//ATRIBUTOS
 	private String cliente;
 	private int agencia;
 	private int numeroConta;
 	private double saldo;
-	
-	public Conta(String cliente, int agencia, int numetoConta){
-		this.setCliente(cliente);
-		this.setAgencia(agencia);
-		this.setNumeroConta(numetoConta); 
-		
-	}
 
+	//CONSTRUTOR
+	public Conta(String cliente) { // o que est√° dentro do par√™nteses s√£o os argumentos 
+		this.setCliente(cliente);
+		this.setAgencia();
+		this.setNumeroConta();
+
+	}
+	
+
+	//METODOS
 	public String getCliente() {
 		return cliente;
 	}
 
 	public void setCliente(String cliente) {
 		this.cliente = cliente;
-		
+
 	}
 
 	public int getAgencia() {
 		return agencia;
 	}
 
-	public boolean setAgencia(int agencia) {
-		
-		if(agencia <= 0) {
-			
-			System.out.println("erro !");
-			return false;
-		} else {
-			
-			this.agencia = agencia;	
-			return true;
-		}
-		
-						
-	}
+	
+	//26/07/2021
+	public void setAgencia() {
+			this.agencia = (int) Math.round(Math.random()*900);
+	}			
 
 	public int getNumeroConta() {
 		return numeroConta;
-		
+
 	}
 
-	public boolean setNumeroConta(int numeroConta) {
-		
-		if(numeroConta <= 0) {
-			
-			System.out.println("erro !");
-			return false;
-		} else {
-			
-			this.numeroConta = numeroConta;
-			return true;
-		}			
-		
-		
+	public void setNumeroConta() {
+			this.numeroConta = (int) Math.round(Math.random()*999);
 	}
 
 	public double getSaldo() {
 		return saldo;
 	}
 
-	
 	public void deposita(double valor) {
-		
-		if(valor <= 0) {
-			
-			System.out.println("O valor est· incorreto!");
+
+		if (valor <= 0) {
+			System.out.println("O valor est√° incorreto!");
 		} else {
-			
-			this.saldo +=  valor;
+			this.saldo += valor;
 		}
-		
-		
+
 	}
-	
-	public void saque (double valor) {
-		
-		if(valor > this.getSaldo()) {
-			
+
+	public void saque(double valor) {
+
+		if (valor > this.getSaldo()) {
 			System.out.println("Saldo insuficiente!");
-			
 		} else {
-			
 			this.saldo -= valor;
 		}
 	}
-	
-	
-	public void transfere (double valor, Conta destino) {
-		
-		if(valor > this.getSaldo()) {
-			
+
+	public void transfere(double valor, Conta destino) {
+
+		if (valor > this.getSaldo()) {
 			System.out.println("Saldo insufisiente");
 		} else {
-			
 			this.saque(valor);
 			destino.deposita(valor);
 		}
-		
+
 	}
-	
-	
-	
-	//Agencia e numero de conta n„o pode ser 0 ou menor que 0;
-	//math.ramdom sugent„o 
-	//
-	
-	
-	
 	
 
 }
