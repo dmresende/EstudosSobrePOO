@@ -49,11 +49,134 @@ Reuni-se aqui uma série de conceitos, arquivo, documentos e exemplos adquiridos
 ---
 ### Funcionário
 
+### Classe Conta corrente
 
+> Termo usado para herdar atributos **extends** _Nome_
 
----
-* TesteFuncionario;
-* Bonificação;
-* Programador;
-* Diretor.
+```java
+public class ContaCorrente extends Conta {
 
+```
+
+> Construtor herdeiro:
+
+```java
+  public ContaCorrente(String cliente, int numeroConta, int agencia) {
+		super(cliente, agencia, numeroConta);
+	}
+
+```
+
+> Reescrita de método
+
+> Reescrita do método _saque_ para adicionar a **subtração** _taxa de manutenção._
+
+Para isso eu tenho que criar um método _taxa de manutenção_ fora do escopo do método _saque_ e depois chamá-lo dentro do escopo do método _saque_.
+
+```java
+@Override
+	public void saque(double valor) {
+
+		if (valor > super.getSaldo()) {
+			System.out.println("Saldo insuficiente!");
+		} else {
+			super.saldo -= valor - taxaManutencao(valor);
+		}
+		
+		System.out.println("Seus saldo é de: " + super.saldo);
+	}
+
+```
+
+> Esse método tem que ser **private** porque não pode ser alterado em outro lugar;
+
+```java
+private double taxaManutencao(double valor) {
+		return valor * 0.10;
+	}
+
+```
+
+> Também para a **Classe saque** teve que ser adicionado a informação na condicional (essa linha:
+
+```java
+if (valor > super.getSaldo() || valor + taxaManutencao(valor) > super.getSaldo()) {
+
+```
+
+Ficando:
+
+```java
+@Override
+	public void saque(double valor) {
+
+		if (valor > super.getSaldo() || valor + taxaManutencao(valor) > super.getSaldo()) {
+			System.out.println("Saldo insuficiente!");
+		} else {
+			super.saldo -= valor - taxaManutencao(valor);
+		}
+		
+		System.out.println("Seus saldo é de: " + super.saldo);
+	}
+
+```
+
+> Alterando a Classe **Conta Corrente**, foi adicionado uma _característica_ onde o cliente tentando sacar um calor, que somado com a taxa, ultrapasse o limite dele, ele não pode sacar o valor e aparece uma mensagem:
+
+```java
+@Override
+	public void saque(double valor) {
+
+		if (valor > super.getSaldo() || valor + taxaManutencao(valor) > super.getSaldo()) {
+		System.out.println("Saldo insuficiente. Falra o valor de: " + (valor + taxaManutencao(valor) - saldo)  + " para completar o saque.");
+		} else {
+			super.saldo -= valor - taxaManutencao(valor);
+		}
+		
+		System.out.println("Seus saldo é de: " + super.saldo);
+	}
+
+```
+
+----------
+
+> Na Classe Poupança o método subscrito **deposita** recebeu valore como _cashBack:_
+
+```java
+@Override
+	public void deposita (double valor) {
+		
+		if (valor <=0) {
+			System.out.println("O valor está incorreto!");
+			
+		}else {
+			super.saldo += valor + this.cashback(valor);  
+		}			
+	}
+
+```
+
+A Classe **Poupança** também precisou ter o método saque subscrito para informar o saldo da poupança ao ter uma operação de saque efetuada pelo usuário:
+
+```java
+@Override
+	public void saque(double valor) {
+
+		if (valor > super.getSaldo()) {
+			System.out.println("Saldo insuficiente!");
+		} else {
+			this.saldo -= valor;
+			System.out.println(saldo);
+		}
+	}
+
+```
+
+> Método criado para retornar **cashback**:
+
+```java
+private double cashback(double valor) {
+		return valor * 0.10;
+	}
+
+```

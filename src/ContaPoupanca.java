@@ -20,10 +20,22 @@ public class ContaPoupanca extends Conta {
 			
 		}else {
 			super.saldo += valor + this.cashback(valor);  
-		}		
-		
-		
+		}			
 	}
+	
+	
+//	@Override
+//	public void saque(double valor) {
+//
+//		if (valor > super.getSaldo()) {
+//			System.out.println("Saldo insuficiente!");
+//		} else {
+//			this.saldo -= valor;
+//			System.out.println(saldo);
+//		}
+//	} A CLASSE MÃE JÁ FAZ ISSO VERIFICAR NOVAMENTE
+	
+	
 	
 	private double cashback(double valor) {
 		return valor * 0.10;

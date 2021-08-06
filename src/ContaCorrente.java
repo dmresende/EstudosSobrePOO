@@ -15,8 +15,8 @@ public class ContaCorrente extends Conta {
 	@Override
 	public void saque(double valor) {
 
-		if (valor > super.getSaldo()) {
-			System.out.println("Saldo insuficiente!");
+		if (valor > super.getSaldo() || valor + taxaManutencao(valor) > super.getSaldo()) {
+		System.out.println("Saldo insuficiente. Falra o valor de: " + (valor + taxaManutencao(valor) - saldo)  + " para completar o saque.");
 		} else {
 			super.saldo -= valor - taxaManutencao(valor);
 		}
